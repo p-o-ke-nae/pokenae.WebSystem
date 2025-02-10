@@ -1,0 +1,6 @@
+@pokenae.WebSystem.API_HostAddress = http://localhost:5068
+
+GET {{pokenae.WebSystem.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
