@@ -55,7 +55,7 @@ public class AccountController : ControllerBase
             });
 
         _logger.LogInformation("Google authentication succeeded.");
-        return Redirect($"https://client.example.com/auth-callback?claims={System.Text.Json.JsonSerializer.Serialize(claims)}");
+        return Redirect($"http://pokenae.com");///auth-callback?claims={System.Text.Json.JsonSerializer.Serialize(claims)}");
     }
 
     /// <summary>
