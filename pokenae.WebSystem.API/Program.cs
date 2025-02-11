@@ -5,6 +5,7 @@ using pokenae.WebSystem.API.Services.impl;
 using pokenae.WebSystem.Infrastructure.Repositories;
 using pokenae.WebSystem.API.Services;
 using pokenae.WebSystem.Infrastructure.Repositories.impl;
+using Microsoft.Extensions.Logging;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// Configure logging
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // Add authentication services
 builder.Services.AddAuthentication(options =>
@@ -22,8 +27,16 @@ builder.Services.AddAuthentication(options =>
 .AddCookie()
 .AddGoogle(options =>
 {
-    options.ClientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-    options.ClientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+    var clientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
+    var clientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
+
+    // Log the environment variables
+    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
+    logger.LogInformation("GOOGLE_CLIENT_ID: {ClientId}", clientId);
+    logger.LogInformation("GOOGLE_CLIENT_SECRET: {ClientSecret}", clientSecret);
+
+    options.ClientId = clientId;
+    options.ClientSecret = clientSecret;
 });
 
 // Add DbContext
