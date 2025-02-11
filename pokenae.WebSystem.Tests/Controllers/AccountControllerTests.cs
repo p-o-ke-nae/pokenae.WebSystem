@@ -5,18 +5,21 @@ using pokenae.WebSystem.API.Services;
 using Xunit;
 using System.Threading.Tasks;
 using pokenae.WebSystem.API.DTOs;
+using Microsoft.Extensions.Logging;
 
 namespace pokenae.WebSystem.Tests.Controllers
 {
     public class AccountControllerTests
     {
         private readonly Mock<IAccountService> _mockAccountService;
+        private readonly Mock<ILogger<AccountController>> _mockLogger;
         private readonly AccountController _controller;
 
         public AccountControllerTests()
         {
             _mockAccountService = new Mock<IAccountService>();
-            _controller = new AccountController(_mockAccountService.Object);
+            _mockLogger = new Mock<ILogger<AccountController>>();
+            _controller = new AccountController(_mockAccountService.Object, _mockLogger.Object);
         }
 
         [Fact]
@@ -31,9 +34,10 @@ namespace pokenae.WebSystem.Tests.Controllers
         {
             // Arrange
             _mockAccountService.Setup(service => service.GetClaimsAsync()).ReturnsAsync((IEnumerable<ClaimDto>)null);
+            string test = "test";
 
             // Act
-            var result = await _controller.GoogleCallback();
+            var result = await _controller.GoogleCallback(test);
 
             // Assert
             Assert.IsType<BadRequestResult>(result);

@@ -37,7 +37,7 @@ public class AccountController : ControllerBase
     /// Google認証のコールバックを処理します。
     /// </summary>
     [HttpGet("google-callback")]
-    public async Task<IActionResult> GoogleCallback()
+    public async Task<IActionResult> GoogleCallback(string credential)
     {
         var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
