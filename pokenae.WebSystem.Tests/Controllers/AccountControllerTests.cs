@@ -34,10 +34,9 @@ namespace pokenae.WebSystem.Tests.Controllers
         {
             // Arrange
             _mockAccountService.Setup(service => service.GetClaimsAsync()).ReturnsAsync((IEnumerable<ClaimDto>)null);
-            string test = "test";
 
             // Act
-            var result = await _controller.GoogleCallback(test);
+            var result = await _controller.GoogleCallback();
 
             // Assert
             Assert.IsType<BadRequestResult>(result);
