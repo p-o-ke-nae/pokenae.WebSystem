@@ -26,11 +26,11 @@ namespace pokenae.Commons.Models
         [Required]
         public string UpdatedProgramId { get; set; }
 
-        public string DeletedBy { get; set; }
+        public string? DeletedBy { get; set; }
 
         public DateTime? DeletedAt { get; set; }
 
-        public string DeletedProgramId { get; set; }
+        public string? DeletedProgramId { get; set; }
 
         [ConcurrencyCheck]
         public int Version { get; set; }
