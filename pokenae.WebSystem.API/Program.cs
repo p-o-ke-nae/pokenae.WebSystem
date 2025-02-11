@@ -23,6 +23,7 @@ builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; // ここでデフォルトのサインインスキームを指定
 })
 .AddCookie()
 .AddGoogle(options =>
@@ -37,6 +38,7 @@ builder.Services.AddAuthentication(options =>
 
     options.ClientId = clientId;
     options.ClientSecret = clientSecret;
+    options.CallbackPath = new PathString("/api/account/google-callback"); // ここでリダイレクト URI を設定
 });
 
 // Add DbContext

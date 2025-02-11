@@ -10,10 +10,12 @@ using pokenae.WebSystem.API.Services;
 public class AccountController : ControllerBase
 {
     private readonly IAccountService _accountService;
+    private readonly ILogger<AccountController> _logger;
 
-    public AccountController(IAccountService accountService)
+    public AccountController(IAccountService accountService, ILogger<AccountController> logger)
     {
         _accountService = accountService;
+        _logger = logger;
     }
 
     /// <summary>
@@ -22,7 +24,12 @@ public class AccountController : ControllerBase
     [HttpGet("login")]
     public IActionResult Login()
     {
-        var properties = new AuthenticationProperties { RedirectUri = "/api/account/google-callback" };
+        var properties = new AuthenticationProperties
+        {
+            RedirectUri = Url.Action("GoogleCallback", "Account"),
+            Items = { { "LoginProvider", "Google" } }
+        };
+        _logger.LogInformation("Redirecting to Google for authentication.");
         return Challenge(properties, GoogleDefaults.AuthenticationScheme);
     }
 
@@ -30,12 +37,15 @@ public class AccountController : ControllerBase
     /// Google認証のコールバックを処理します。
     /// </summary>
     [HttpGet("google-callback")]
-    public async Task<IActionResult> GoogleCallback()
+    public async Task<IActionResult> GoogleCallback(string credential)
     {
         var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
         if (!authenticateResult.Succeeded)
-            return BadRequest(); // 認証失敗
+        {
+            _logger.LogError("Google authentication failed.");
+            return BadRequest("Google authentication failed.");
+        }
 
         var claims = authenticateResult.Principal.Identities
             .FirstOrDefault()?.Claims.Select(claim => new ClaimDto
@@ -44,6 +54,7 @@ public class AccountController : ControllerBase
                 Value = claim.Value
             });
 
+        _logger.LogInformation("Google authentication succeeded.");
         return Redirect($"https://client.example.com/auth-callback?claims={System.Text.Json.JsonSerializer.Serialize(claims)}");
     }
 
@@ -54,6 +65,7 @@ public class AccountController : ControllerBase
     public async Task<IActionResult> Logout()
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+        _logger.LogInformation("User logged out.");
         return Redirect("/");
     }
 }
