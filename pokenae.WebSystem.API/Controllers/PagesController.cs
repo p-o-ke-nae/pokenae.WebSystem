@@ -35,7 +35,7 @@ namespace pokenae.WebSystem.API.Controllers
 
             try
             {
-                var page = await _pageService.GetPageByRouteAsync(route, int.Parse(userId));
+                var page = await _pageService.GetPageByRouteAsync(route, userId);
                 var pageDto = new PageDto
                 {
                     Id = page.Id,

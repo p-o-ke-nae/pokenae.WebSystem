@@ -8,7 +8,7 @@ namespace pokenae.WebSystem.Infrastructure.Repositories
     /// </summary>
     public interface IUserRoleRepository
     {
-        Task<T1UserRole> GetUserRoleAsync(int userId);
+        Task<T1UserRole> GetUserRoleAsync(string userId);
     }
 }
 

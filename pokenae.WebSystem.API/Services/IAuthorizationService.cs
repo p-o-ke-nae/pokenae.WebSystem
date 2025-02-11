@@ -7,7 +7,7 @@ namespace pokenae.WebSystem.API.Services
     /// </summary>
     public interface IAuthorizationService
     {
-        Task<bool> CheckUserAuthorizationAsync(int userId, int requiredLevel);
+        Task<bool> CheckUserAuthorizationAsync(string userId, int requiredLevel);
     }
 }
 

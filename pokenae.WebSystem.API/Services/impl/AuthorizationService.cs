@@ -21,7 +21,7 @@ namespace pokenae.WebSystem.API.Services.impl
         /// <param name="userId">ユーザID</param>
         /// <param name="requiredLevel">必要な権限レベル</param>
         /// <returns>権限がある場合はtrue、ない場合はfalse</returns>
-        public async Task<bool> CheckUserAuthorizationAsync(int userId, int requiredLevel)
+        public async Task<bool> CheckUserAuthorizationAsync(string userId, int requiredLevel)
         {
             var userRole = await _userRoleRepository.GetUserRoleAsync(userId);
 

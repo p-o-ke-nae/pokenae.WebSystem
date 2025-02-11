@@ -21,7 +21,7 @@ namespace pokenae.WebSystem.API.Services.impl
             _authorizationService = authorizationService;
         }
 
-        public async Task<M1Page> GetPageByRouteAsync(string route, int userId)
+        public async Task<M1Page> GetPageByRouteAsync(string route, string userId)
         {
             if (!await _authorizationService.CheckUserAuthorizationAsync(userId, 1))
             {

@@ -18,7 +18,7 @@ namespace pokenae.WebSystem.Infrastructure.Repositories.impl
             _context = context;
         }
 
-        public async Task<T1UserRole> GetUserRoleAsync(int userId)
+        public async Task<T1UserRole> GetUserRoleAsync(string userId)
         {
             return await _context.UserRoles
                 .Include(ur => ur.Role)

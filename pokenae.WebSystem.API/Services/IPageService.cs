@@ -8,7 +8,7 @@ namespace pokenae.WebSystem.API.Services
     /// </summary>
     public interface IPageService
     {
-        Task<M1Page> GetPageByRouteAsync(string route, int userId);
+        Task<M1Page> GetPageByRouteAsync(string route, string userId);
     }
 }
 
