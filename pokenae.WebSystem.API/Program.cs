@@ -6,6 +6,7 @@ using pokenae.WebSystem.Infrastructure.Repositories;
 using pokenae.WebSystem.API.Services;
 using pokenae.WebSystem.Infrastructure.Repositories.impl;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication.Google;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -22,7 +23,7 @@ builder.Logging.AddConsole();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-    options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; // ここでデフォルトのサインインスキームを指定
 })
 .AddCookie()
@@ -38,6 +39,7 @@ builder.Services.AddAuthentication(options =>
 
     options.ClientId = clientId;
     options.ClientSecret = clientSecret;
+    options.SaveTokens = true;
     options.CallbackPath = new PathString("/api/account/google-callback"); // ここでリダイレクト URI を設定
 });
 
