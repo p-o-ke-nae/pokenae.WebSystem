@@ -6,6 +6,10 @@ using Xunit;
 using System.Threading.Tasks;
 using pokenae.WebSystem.API.DTOs;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using System.Security.Claims;
 
 namespace pokenae.WebSystem.Tests.Controllers
 {
@@ -33,13 +37,48 @@ namespace pokenae.WebSystem.Tests.Controllers
         public async Task GoogleCallback_ReturnsBadRequest_WhenAuthenticationFails()
         {
             // Arrange
-            _mockAccountService.Setup(service => service.GetClaimsAsync()).ReturnsAsync((IEnumerable<ClaimDto>)null);
+            var authResult = AuthenticateResult.Fail("Authentication failed");
+            var mockHttpContext = new Mock<HttpContext>();
+            mockHttpContext.Setup(c => c.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme))
+                           .ReturnsAsync(authResult);
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = mockHttpContext.Object
+            };
 
             // Act
             var result = await _controller.GoogleCallback();
 
             // Assert
-            Assert.IsType<BadRequestResult>(result);
+            Assert.IsType<BadRequestObjectResult>(result);
+        }
+
+        [Fact]
+        public async Task GoogleCallback_ReturnsRedirect_WhenAuthenticationSucceeds()
+        {
+            // Arrange
+            var claims = new List<Claim>
+                {
+                    new Claim(ClaimTypes.Name, "Test User"),
+                    new Claim(ClaimTypes.Email, "testuser@example.com")
+                };
+            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
+            var principal = new ClaimsPrincipal(identity);
+            var authResult = AuthenticateResult.Success(new AuthenticationTicket(principal, CookieAuthenticationDefaults.AuthenticationScheme));
+            var mockHttpContext = new Mock<HttpContext>();
+            mockHttpContext.Setup(c => c.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme))
+                           .ReturnsAsync(authResult);
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = mockHttpContext.Object
+            };
+
+            // Act
+            var result = await _controller.GoogleCallback();
+
+            // Assert
+            var redirectResult = Assert.IsType<RedirectResult>(result);
+            Assert.Equal("http://pokenae.com", redirectResult.Url);
         }
 
         [Fact]

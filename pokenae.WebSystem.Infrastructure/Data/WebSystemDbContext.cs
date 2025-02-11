@@ -6,7 +6,7 @@ using pokenae.WebSystem.Core.Entities;
 namespace pokenae.WebSystem.Infrastructure.Data
 {
     /// <summary>
-    /// WebSystem専用のデータベースコンテキスト
+    /// WebSystem用のデータベースコンテキスト
     /// </summary>
     public class WebSystemDbContext : ApplicationDbContext<WebSystemDbContext>
     {
@@ -23,14 +23,14 @@ namespace pokenae.WebSystem.Infrastructure.Data
         public DbSet<T1UserRole> UserRoles { get; set; }
 
         /// <summary>
-        /// モデルの作成時にエンティティ間の関係を設定します
+        /// モデルの作成時にエンティティの制約を設定します
         /// </summary>
         /// <param name="modelBuilder">モデルビルダー</param>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
-            // 多対多の関係を設定
+            // 複合キーの設定
             modelBuilder.Entity<T1PageTag>()
                 .HasKey(pt => new { pt.PageId, pt.TagId });
 
@@ -52,7 +52,7 @@ namespace pokenae.WebSystem.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(ur => ur.RoleId);
 
-            // ページとページ分類の関係を設定
+            // ページとページカテゴリの制約設定
             modelBuilder.Entity<M1Page>()
                 .HasOne(p => p.PageCategory)
                 .WithMany()
