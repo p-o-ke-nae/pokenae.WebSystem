@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using Moq;
 using pokenae.WebSystem.Core.Entities;
 using pokenae.WebSystem.Core.Repositories;
-using pokenae.WebSystem.Core.Services;
-using pokenae.WebSystem.Core.Services.impl;
+using pokenae.WebSystem.API.Services;
+using pokenae.WebSystem.API.Services.impl;
 using Xunit;
 
 namespace pokenae.WebSystem.Tests.Services
