@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using pokenae.Commons.Models;
 
 namespace pokenae.WebSystem.Core.Entities
@@ -6,6 +7,7 @@ namespace pokenae.WebSystem.Core.Entities
     /// <summary>
     /// ページ分類を表すエンティティクラス
     /// </summary>
+    [Table("M1PageCategory")]
     public class M1PageCategory : BaseEntity
     {
         [Key]

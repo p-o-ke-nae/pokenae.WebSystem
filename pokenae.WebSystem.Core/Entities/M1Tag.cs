@@ -1,11 +1,13 @@
 using pokenae.Commons.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pokenae.WebSystem.Core.Entities
 {
     /// <summary>
-    /// タグ情報を表すエンティティクラス
+    /// タグを表すエンティティクラス
     /// </summary>
+    [Table("M1Tag")]
     public class M1Tag : BaseEntity
     {
         [Key]

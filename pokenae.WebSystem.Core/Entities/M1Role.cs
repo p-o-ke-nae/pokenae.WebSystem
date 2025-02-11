@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using pokenae.Commons.Models;
 
 namespace pokenae.WebSystem.Core.Entities
 {
     /// <summary>
-    /// 役割情報を表すエンティティクラス
+    /// 役割を表すエンティティクラス
     /// </summary>
+    [Table("M1Role")]
     public class M1Role : BaseEntity
     {
         [Key]

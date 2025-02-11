@@ -7,6 +7,7 @@ namespace pokenae.WebSystem.Core.Entities
     /// <summary>
     /// ユーザーと役割の関連を表すエンティティクラス
     /// </summary>
+    [Table("T1UserRole")]
     public class T1UserRole : BaseEntity
     {
         [Required]

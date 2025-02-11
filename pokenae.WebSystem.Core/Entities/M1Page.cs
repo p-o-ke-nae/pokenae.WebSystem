@@ -1,11 +1,13 @@
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using pokenae.Commons.Models;
 
 namespace pokenae.WebSystem.Core.Entities
 {
     /// <summary>
-    /// ページ情報を表すエンティティクラス
+    /// ページを表すエンティティクラス
     /// </summary>
+    [Table("M1Page")]
     public class M1Page : BaseEntity
     {
         [Key]
@@ -24,14 +26,14 @@ namespace pokenae.WebSystem.Core.Entities
         public string Route { get; set; }
 
         /// <summary>
-        /// ページ分類ID
+        /// ページカテゴリID
         /// </summary>
         [Required]
         [StringLength(5)]
         public string PageCategoryId { get; set; }
 
         /// <summary>
-        /// ページ分類
+        /// ページカテゴリ
         /// </summary>
         public M1PageCategory PageCategory { get; set; }
     }

@@ -7,6 +7,7 @@ namespace pokenae.WebSystem.Core.Entities
     /// <summary>
     /// ページとタグの関連を表すエンティティクラス
     /// </summary>
+    [Table("T1PageTag")]
     public class T1PageTag : BaseEntity
     {
         [Required]
