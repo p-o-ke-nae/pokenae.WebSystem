@@ -7,6 +7,7 @@ using pokenae.WebSystem.API.Services;
 using pokenae.WebSystem.Infrastructure.Repositories.impl;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Authentication.Google;
+using pokenae.WebSystem.Core.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,7 +46,7 @@ builder.Services.AddAuthentication(options =>
 
 // Add DbContext
 builder.Services.AddDbContext<WebSystemDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("pokenae_WebAppContext")));
 
 // Add IHttpContextAccessor
 builder.Services.AddHttpContextAccessor();
@@ -53,11 +54,13 @@ builder.Services.AddHttpContextAccessor();
 // Add Repositories
 builder.Services.AddScoped<IPageRepository, PageRepository>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
+builder.Services.AddScoped<IPageCategoryRepository, PageCategoryRepository>();
 
 // Add Services
 builder.Services.AddScoped<IPageService, PageService>();
 builder.Services.AddScoped<AuthorizationService>();
 builder.Services.AddScoped<IAccountService, AccountService>();
+builder.Services.AddScoped<IPageCategoryService, PageCategoryService>(); // ‚±‚±‚Å IPageCategoryService ‚ð“o˜^
 
 var app = builder.Build();
 

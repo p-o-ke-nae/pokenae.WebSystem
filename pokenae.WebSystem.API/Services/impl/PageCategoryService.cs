@@ -2,9 +2,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using pokenae.WebSystem.Core.Entities;
 using pokenae.WebSystem.Core.Repositories;
-using pokenae.WebSystem.Core.Services;
+using pokenae.WebSystem.API.Services;
 
-namespace pokenae.WebSystem.Core.Services.impl
+namespace pokenae.WebSystem.API.Services.impl
 {
     /// <summary>
     /// カテゴリサービスの実装

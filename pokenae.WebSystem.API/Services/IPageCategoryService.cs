@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using pokenae.WebSystem.Core.Entities;
 
-namespace pokenae.WebSystem.Core.Services
+namespace pokenae.WebSystem.API.Services
 {
     /// <summary>
     /// カテゴリサービスのインターフェース

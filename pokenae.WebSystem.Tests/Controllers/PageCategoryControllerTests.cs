@@ -1,6 +1,6 @@
 using Moq;
 using pokenae.WebSystem.Core.Entities;
-using pokenae.WebSystem.Core.Services;
+using pokenae.WebSystem.API.Services;
 using pokenae.WebSystem.API.Controllers;
 using Xunit;
 using Microsoft.AspNetCore.Mvc;
