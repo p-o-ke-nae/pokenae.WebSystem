@@ -7,15 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\pokenae.Commons\pokenae.Commons.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.Domain\pokenae.WebSystem.Domain.csproj" />
   </ItemGroup>
 

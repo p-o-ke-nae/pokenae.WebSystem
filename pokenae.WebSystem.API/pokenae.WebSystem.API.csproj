@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.3.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.12" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
@@ -18,8 +19,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\pokenae.Commons\pokenae.Commons.csproj" />
-    <ProjectReference Include="..\pokenae.WebSystem.Core\pokenae.WebSystem.Core.csproj" />
+    <ProjectReference Include="..\pokenae.WebSystem.Application\pokenae.WebSystem.Application.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.Infrastructure\pokenae.WebSystem.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Filters\" />
   </ItemGroup>
 
 </Project>

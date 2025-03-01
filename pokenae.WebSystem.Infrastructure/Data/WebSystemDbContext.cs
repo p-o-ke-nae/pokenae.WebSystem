@@ -16,11 +16,11 @@ namespace pokenae.WebSystem.Infrastructure.Data
         }
 
         public DbSet<M1Page> Pages { get; set; }
-        public DbSet<M1PageCategory> PageCategories { get; set; }
         public DbSet<M1Tag> Tags { get; set; }
         public DbSet<T1PageTag> PageTags { get; set; }
         public DbSet<M1Role> Roles { get; set; }
         public DbSet<T1UserRole> UserRoles { get; set; }
+        public DbSet<T1UserPageAccess> UserPageAccesses { get; set; }
 
         /// <summary>
         /// モデルの作成時にエンティティの制約を設定します
@@ -52,11 +52,9 @@ namespace pokenae.WebSystem.Infrastructure.Data
                 .WithMany()
                 .HasForeignKey(ur => ur.RoleId);
 
-            // ページとページカテゴリの制約設定
-            modelBuilder.Entity<M1Page>()
-                .HasOne(p => p.PageCategory)
-                .WithMany()
-                .HasForeignKey(p => p.PageCategoryId);
+            // Update M1Page configuration if necessary
+            modelBuilder.Entity<M1Page>().ToTable("M1Page");
+            modelBuilder.Entity<T1UserPageAccess>().ToTable("T1UserPageAccess");
         }
     }
 }

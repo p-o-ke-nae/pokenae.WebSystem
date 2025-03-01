@@ -24,15 +24,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Services\" />
-    <Folder Include="Infrastructure\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\pokenae.Commons\pokenae.Commons.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.API\pokenae.WebSystem.API.csproj" />
-    <ProjectReference Include="..\pokenae.WebSystem.Core\pokenae.WebSystem.Core.csproj" />
+    <ProjectReference Include="..\pokenae.WebSystem.Application\pokenae.WebSystem.Application.csproj" />
+    <ProjectReference Include="..\pokenae.WebSystem.Domain\pokenae.WebSystem.Domain.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.Infrastructure\pokenae.WebSystem.Infrastructure.csproj" />
   </ItemGroup>
 

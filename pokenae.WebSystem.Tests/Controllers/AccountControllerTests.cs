@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using System.Security.Claims;
+using pokenae.WebSystem.Application.Interfaces;
 
 namespace pokenae.WebSystem.Tests.Controllers
 {

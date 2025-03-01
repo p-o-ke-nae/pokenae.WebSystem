@@ -5,10 +5,10 @@ using pokenae.Commons.Models;
 namespace pokenae.WebSystem.Core.Entities
 {
     /// <summary>
-    /// ページ分類を表すエンティティクラス
+    /// 役割を表すエンティティクラス
     /// </summary>
-    [Table("M1PageCategory")]
-    public class M1PageCategory : BaseEntity
+    [Table("M1Role")]
+    public class M1Role : BaseEntity
     {
         [Key]
         [StringLength(5)]
@@ -18,16 +18,8 @@ namespace pokenae.WebSystem.Core.Entities
         [MaxLength(50)]
         public string Name { get; set; }
 
-        /// <summary>
-        /// 表示順を表すプロパティ
-        /// </summary>
         [Required]
-        public int DisplayOrder { get; set; }
-
-        /// <summary>
-        /// ヘッダに表示するか否かを表すプロパティ
-        /// </summary>
-        [Required]
-        public bool IsHeader { get; set; }
+        public int Level { get; set; }
     }
 }
+

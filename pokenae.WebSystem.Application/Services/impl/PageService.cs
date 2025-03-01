@@ -1,9 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using pokenae.WebSystem.Core.Entities;
 using pokenae.WebSystem.Infrastructure.Repositories;
-using pokenae.WebSystem.API.Services;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using pokenae.WebSystem.Application.Interfaces;
 
 namespace pokenae.WebSystem.API.Services.impl
 {
@@ -21,6 +22,7 @@ namespace pokenae.WebSystem.API.Services.impl
             _authorizationService = authorizationService;
         }
 
+        // ...existing code...
         public async Task<M1Page> GetPageByRouteAsync(string route, string userId)
         {
             if (!await _authorizationService.CheckUserAuthorizationAsync(userId, 1))
@@ -36,6 +38,16 @@ namespace pokenae.WebSystem.API.Services.impl
             }
 
             return page;
+        }
+
+        public async Task<IEnumerable<M1Page>> GetHeaderPagesAsync()
+        {
+            return await _pageRepository.GetHeaderPagesAsync();
+        }
+
+        public async Task<bool> CheckPageAccessAsync(string route, string userId)
+        {
+            return await _pageRepository.CheckPageAccessAsync(route, userId);
         }
     }
 }

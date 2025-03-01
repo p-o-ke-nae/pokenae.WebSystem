@@ -1,6 +1,6 @@
 using System.Threading.Tasks;
 
-namespace pokenae.WebSystem.API.Services
+namespace pokenae.WebSystem.Application.Interfaces
 {
     /// <summary>
     /// 権限チェックサービスのインターフェース

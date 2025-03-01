@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Http;
 using pokenae.WebSystem.API.DTOs;
+using pokenae.WebSystem.Application.Interfaces;
 using System.Linq;
 using System.Threading.Tasks;
 

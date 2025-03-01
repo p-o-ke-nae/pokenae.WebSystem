@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using pokenae.WebSystem.API.DTOs;
 using pokenae.WebSystem.API.Services;
+using pokenae.WebSystem.Application.Interfaces;
 
 [Route("api/[controller]")]
    [ApiController]
@@ -27,7 +29,9 @@ public class AccountController : ControllerBase
         var properties = new AuthenticationProperties
         {
             RedirectUri = Url.Action("GoogleCallback", "Account"),
-            Items = { { "LoginProvider", "Google" } }
+            Items = { { "LoginProvider", "Google" } },
+            AllowRefresh = true, // リフレッシュを許可
+            //Parameters = { { "state", Guid.NewGuid().ToString("N") } } // state パラメータを追加
         };
         _logger.LogInformation("Redirecting to Google for authentication.");
         return Challenge(properties, GoogleDefaults.AuthenticationScheme);
@@ -37,6 +41,7 @@ public class AccountController : ControllerBase
     /// Google認証のコールバックを処理します。
     /// </summary>
     [HttpGet("google-callback")]
+    [AllowAnonymous]
     public async Task<IActionResult> GoogleCallback()
     {
         var authenticateResult = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
@@ -55,7 +60,7 @@ public class AccountController : ControllerBase
             });
 
         _logger.LogInformation("Google authentication succeeded.");
-        //return Redirect($"https://client.example.com/auth-callback?claims={System.Text.Json.JsonSerializer.Serialize(claims)}");
+        ////return Redirect($"https://client.example.com/auth-callback?claims={System.Text.Json.JsonSerializer.Serialize(claims)}");
         return Redirect($"http://pokenae.com");
     }
 
@@ -67,7 +72,7 @@ public class AccountController : ControllerBase
     {
         await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
         _logger.LogInformation("User logged out.");
-        return Redirect("/");
+        return Redirect("http://pokenae.com");
     }
 }
    
