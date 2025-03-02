@@ -16,7 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pokenae.Commons\pokenae.Commons.csproj" />
+    <Reference Include="pokenae.Commons">
+      <HintPath>..\..\pokenae.Commons\pokenae.Commons\bin\Debug\net8.0\pokenae.Commons.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

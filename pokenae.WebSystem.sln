@@ -5,8 +5,6 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokenae.WebSystem.API", "pokenae.WebSystem.API\pokenae.WebSystem.API.csproj", "{3FE9043D-06C2-47B4-8019-96A152B16331}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokenae.Commons", "pokenae.Commons\pokenae.Commons.csproj", "{8529159D-17AE-4F3D-8D9A-A468736A9613}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokenae.WebSystem.Infrastructure", "pokenae.WebSystem.Infrastructure\pokenae.WebSystem.Infrastructure.csproj", "{C1390E57-5248-469E-AE0E-26BBEDC78464}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pokenae.WebSystem.Tests", "pokenae.WebSystem.Tests\pokenae.WebSystem.Tests.csproj", "{BF8DCED3-31B6-4D47-97FA-4DB3C85F4651}"
@@ -25,10 +23,6 @@ Global
 		{3FE9043D-06C2-47B4-8019-96A152B16331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE9043D-06C2-47B4-8019-96A152B16331}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE9043D-06C2-47B4-8019-96A152B16331}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8529159D-17AE-4F3D-8D9A-A468736A9613}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8529159D-17AE-4F3D-8D9A-A468736A9613}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8529159D-17AE-4F3D-8D9A-A468736A9613}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8529159D-17AE-4F3D-8D9A-A468736A9613}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C1390E57-5248-469E-AE0E-26BBEDC78464}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C1390E57-5248-469E-AE0E-26BBEDC78464}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C1390E57-5248-469E-AE0E-26BBEDC78464}.Release|Any CPU.ActiveCfg = Release|Any CPU

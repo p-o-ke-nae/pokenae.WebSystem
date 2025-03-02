@@ -8,7 +8,7 @@ using pokenae.WebSystem.API.Services;
 using pokenae.WebSystem.Application.Interfaces;
 
 [Route("api/[controller]")]
-   [ApiController]
+[ApiController]
 public class AccountController : ControllerBase
 {
     private readonly IAccountService _accountService;
@@ -31,7 +31,7 @@ public class AccountController : ControllerBase
             RedirectUri = Url.Action("GoogleCallback", "Account"),
             Items = { { "LoginProvider", "Google" } },
             AllowRefresh = true, // リフレッシュを許可
-            //Parameters = { { "state", Guid.NewGuid().ToString("N") } } // state パラメータを追加
+            Parameters = { { "state", Guid.NewGuid().ToString("N") } } // state パラメータを追加
         };
         _logger.LogInformation("Redirecting to Google for authentication.");
         return Challenge(properties, GoogleDefaults.AuthenticationScheme);

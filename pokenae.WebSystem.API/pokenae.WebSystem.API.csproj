@@ -18,13 +18,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\pokenae.Commons\pokenae.Commons.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.Application\pokenae.WebSystem.Application.csproj" />
     <ProjectReference Include="..\pokenae.WebSystem.Infrastructure\pokenae.WebSystem.Infrastructure.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Filters\" />
   </ItemGroup>
 
 </Project>

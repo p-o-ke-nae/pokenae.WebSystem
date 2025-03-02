@@ -16,61 +16,21 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// CORSの設定を追加
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAllOrigins",
+        builder =>
+        {
+            builder.AllowAnyOrigin()
+                   .AllowAnyMethod()
+                   .AllowAnyHeader();
+        });
+});
+
 // Configure logging
 builder.Logging.ClearProviders();
 builder.Logging.AddConsole();
-
-//// Add authentication services
-//builder.Services.AddAuthentication(options =>
-//{
-//    options.DefaultAuthenticateScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-//    options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
-//    options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme; // ここでデフォルトのサインインスキームを指定
-//})
-//.AddCookie()
-//.AddGoogle(options =>
-//{
-//    var clientId = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_ID");
-//    var clientSecret = Environment.GetEnvironmentVariable("GOOGLE_CLIENT_SECRET");
-
-//    // Log the environment variables
-//    var logger = builder.Services.BuildServiceProvider().GetRequiredService<ILogger<Program>>();
-//    logger.LogInformation("GOOGLE_CLIENT_ID: {ClientId}", clientId);
-//    logger.LogInformation("GOOGLE_CLIENT_SECRET: {ClientSecret}", clientSecret);
-
-//    options.ClientId = clientId;
-//    options.ClientSecret = clientSecret;
-//    options.SaveTokens = true;
-//    options.CallbackPath = new PathString("/api/account/google-callback"); // ここでリダイレクト URI を設定
-
-//    // state パラメータの生成
-//    options.Events.OnRedirectToAuthorizationEndpoint = context =>
-//    {
-//        var state = Guid.NewGuid().ToString();
-//        context.Properties.Items["state"] = state;
-//        context.HttpContext.Response.Cookies.Append("OAuthState", state, new CookieOptions
-//        {
-//            HttpOnly = true,
-//            Secure = true,
-//            SameSite = SameSiteMode.None
-//        });
-//        context.Response.Redirect(context.RedirectUri);
-//        return Task.CompletedTask;
-//    };
-
-//    //// state パラメータの検証
-//    //options.Events.OnTicketReceived = context =>
-//    //{
-//    //    var state = context.HttpContext.Request.Cookies["OAuthState"];
-//    //    if (context.Properties == null || !context.Properties.Items.TryGetValue("state", out var originalState) || state != originalState)
-//    //    {
-//    //        context.Response.StatusCode = 400;
-//    //        context.Response.ContentType = "text/plain";
-//    //        return context.Response.WriteAsync("Invalid state parameter.");
-//    //    }
-//    //    return Task.CompletedTask;
-//    //};
-//});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -153,6 +113,9 @@ app.UseHttpsRedirection();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+// CORSのミドルウェアを追加
+app.UseCors("AllowAllOrigins");
 
 app.MapControllers();
 

@@ -1,4 +1,3 @@
-using Microsoft.EntityFrameworkCore;
 using pokenae.WebSystem.Core.Entities;
 using pokenae.WebSystem.Infrastructure.Repositories;
 using System.Collections.Generic;
